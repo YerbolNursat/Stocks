@@ -1,0 +1,97 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdkVersion ANDROID_COMPILE_SDK_VERSION
+    buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        applicationId "kz.application.stocks"
+        minSdkVersion ANDROID_MIN_SDK_VERSION
+        targetSdkVersion ANDROID_TARGET_SDK_VERSION
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation "androidx.core:core-ktx:$androidxCoreKtx"
+
+    // Constraint layout
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+
+    //view_model_dependensies
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelKxt"
+
+    //glide
+    kapt "com.github.bumptech.glide:compiler:$glide"
+    implementation "com.github.bumptech.glide:glide:$glide"
+    implementation "com.github.bumptech.glide:okhttp3-integration:$glide"
+
+
+    //network_dependensies
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3LogInterceptor"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+
+    //test_dependensies
+    testImplementation "junit:junit:$androidxJUnit"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJUnit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCore"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito"
+    testImplementation "androidx.arch.core:core-testing:$coreTestVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineTest"
+
+    //nav_dependensies
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationComponent"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationComponent"
+
+    // KotlinReflect
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinReflect"
+
+    // LiveEvent
+    implementation "com.github.hadilq.liveevent:liveevent:$liveEvent"
+
+    // Activity ktx
+    implementation "androidx.activity:activity-ktx:$activityKtx"
+
+    // Fragment ktx
+    implementation "androidx.fragment:fragment-ktx:$fragmentKtx"
+
+}
